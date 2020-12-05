@@ -9,6 +9,8 @@ import { Route, Redirect } from 'react-router-dom';
     4. If the user does not have an authentication token, it redirects to /login
  */
 
+ // in a real world scenrio, make sure that the token is generated from your back end and has as expiration. 
+ 
  const PrivateRoute = ({ component: Component, props}) => {
      return <Route {...props} render={() => {
          // here, add logic for checking if there is an auth token
