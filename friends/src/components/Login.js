@@ -21,4 +21,26 @@ class Login extends React.Component {
     login = e => {
         e.preventDefault();
     }
+
+    render() {
+        return (
+            <div>
+            <form onSubmit={this.login}>
+              <input
+                type="text"
+                name="username"
+                value={this.state.credentials.username}
+                onChange={this.handleChange}
+              />
+              <input
+                type="password"
+                name="password"
+                value={this.state.credentials.password}
+                onChange={this.handleChange}
+              />
+              <button>Log in</button>
+            </form>
+          </div>
+        )
+    }
 }
