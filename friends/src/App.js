@@ -1,5 +1,6 @@
 import React from 'react';
 import Login from './components/Login';
+import FriendsList from './components/FriendsList';
 import './App.css';
 
 // Protected routes
@@ -34,8 +35,9 @@ function App() {
       <header className="App-header">
         <p>I am a new project, I have great potential</p>
         <Login />
+
       </header>
-      
+      <FriendsList />
     </div>
   );
 }
