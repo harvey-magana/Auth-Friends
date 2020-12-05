@@ -1,6 +1,8 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import Login from './components/Login';
 import FriendsList from './components/FriendsList';
+import PrivateRoute from './components/PrivateRoute';
 import './App.css';
 
 // Protected routes
@@ -30,15 +32,25 @@ import './App.css';
 // 11. In FriendList, create getFriends() function that gets the api data
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>I am a new project, I have great potential</p>
-        <Login />
 
-      </header>
-      <FriendsList />
-    </div>
+  return (
+    <Router>
+      <div className="App">
+        <ul>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+          <li>
+            <Link to="/protected">Protected Page</Link>
+          </li>
+        </ul>
+        <Switch>
+          <PrivateRoute exact path="/protected" component={FriendsList} />
+          <Route path="/login" component={Login} />
+          <Route component={Login} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

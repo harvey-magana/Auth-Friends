@@ -11,7 +11,8 @@ import { Route, Redirect } from 'react-router-dom';
 
  // in a real world scenrio, make sure that the token is generated from your back end and has as expiration. 
  
- const PrivateRoute = ({ component: Component, props}) => {
+ const PrivateRoute = ({ component: Component, ...props}) => {
+     console.log("nice try...")
      return <Route {...props} render={() => {
          // here, add logic for checking if there is an auth token
          if (localStorage.getItem('token')) {
