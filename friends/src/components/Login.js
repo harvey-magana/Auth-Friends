@@ -29,9 +29,7 @@ class Login extends React.Component {
         console.log("logging in now...")
         axios.post("http://localhost:5000/api/login", this.state.credentials)
             .then(res => {
-                console.log(res)
                 localStorage.setItem('token', res.data.payload)
-                console.log(localStorage)
                 this.props.history.push('/protected')
             })
             .catch(err => {

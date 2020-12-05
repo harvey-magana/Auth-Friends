@@ -13,7 +13,7 @@ class FriendsList extends React.Component {
     getData = () => {
         axiosWithAuth().get("http://localhost:5000/api/friends")
             .then(res => {
-                console.log(res)
+                console.log(res.data)
                 //localStorage.setItem('token', res.data)
                 //this.props.history.push('/protected')
             })
