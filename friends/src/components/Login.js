@@ -10,7 +10,7 @@ class Login extends React.Component {
     }
 
     handleChange = e => {
-        this.state({
+        this.setState({
             credentials: {
                 ...this.state.credentials,
                 [e.target.name]: e.target.value
@@ -18,8 +18,22 @@ class Login extends React.Component {
         })
     }
 
+    /*
+        1. Connect to server with u/p
+        2. Store the token that gets passed on successful login
+        3. Output an error when we have an unsuccessful login
+     */
+
     login = e => {
         e.preventDefault();
+        // add server logic here
+        axios.post("http://localhost:5000/api/login", this.state.credentials)
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err.response);
+            })
     }
 
     render() {
@@ -44,3 +58,5 @@ class Login extends React.Component {
         )
     }
 }
+
+export default Login;
