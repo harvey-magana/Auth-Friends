@@ -10,7 +10,7 @@ import { Route, Redirect } from 'react-router-dom';
  */
 
  // in a real world scenrio, make sure that the token is generated from your back end and has as expiration. 
- 
+ /*
  const PrivateRoute = ({ component: Component, ...props}) => {
      console.log("nice try...")
      return <Route {...props} render={() => {
@@ -21,5 +21,19 @@ import { Route, Redirect } from 'react-router-dom';
          return <Redirect to="/login" />
      }} />
  }
+ */
+
+ const PrivateRoute = ({ component: Component, ...rest }) => (
+    <Route
+      {...rest}
+      render={props =>
+        localStorage.getItem("token") ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to="/login" />
+        )
+      }
+    />
+  );
 
  export default PrivateRoute;

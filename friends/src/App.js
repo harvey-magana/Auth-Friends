@@ -6,10 +6,8 @@ import PrivateRoute from './components/PrivateRoute';
 import './App.css';
 
 // Protected routes
-// Login component (login page)
-// create and save the login token to localStorage
-// FriendsList component (FriendsList page)
-// create a form to create new friends
+// create a form to create new friends, make it a form component 
+// create a logout function 
 
 // 1. in App, import axios 
 // 2. in App, import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
@@ -32,7 +30,6 @@ import './App.css';
 // 11. In FriendList, create getFriends() function that gets the api data
 
 function App() {
-
   return (
     <Router>
       <div className="App">
