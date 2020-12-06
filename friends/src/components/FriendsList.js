@@ -1,4 +1,5 @@
 import React from 'react';
+//import FriendsForm from './FriendsForm';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
 class FriendsList extends React.Component {
@@ -16,6 +17,7 @@ class FriendsList extends React.Component {
                 const friends = res.data;
                 this.setState({ friends })
                 localStorage.setItem('token', res.data.payload)
+                console.log(localStorage)
                 this.props.history.push('/protected')
             })
             .catch(err => {
@@ -28,13 +30,11 @@ class FriendsList extends React.Component {
     }
 
     logout = () => {
-        console.log(this)
         localStorage.clear('token');
         this.props.history.push('/')
       };
 
     render () {
-        console.log(this.state.friends)
         return(
             <div>
                 <div>Friends List Component</div>
@@ -42,6 +42,7 @@ class FriendsList extends React.Component {
                     return <div key={friend.id}>{friend.name}</div>
                 })}
                 <button onClick={this.logout}>Logout</button>
+
             </div>
             
         )
