@@ -1,6 +1,16 @@
 import React from 'react';
 import FriendsForm from './FriendsForm';
 import axiosWithAuth from '../utils/axiosWithAuth';
+import { NavLink } from 'react-router-dom';
+import {
+    Container,
+    Divider,
+    Grid,
+    Header,
+    List,
+    Menu,
+    Segment,
+  } from 'semantic-ui-react'
 
 class FriendsList extends React.Component {
     constructor() {
@@ -31,6 +41,16 @@ class FriendsList extends React.Component {
     render () {
         return(
             <div>
+                <Menu fixed='top' inverted>
+                <Container>
+                    <Menu.Item header>
+                    <NavLink to="/login">Login</NavLink>
+                    </Menu.Item>
+                    <Menu.Item><NavLink to="/login" onClick={this.logout}>Logout</NavLink></Menu.Item>
+                    <Menu.Item><NavLink to="/protected">Protected Page</NavLink></Menu.Item>
+                </Container>
+                </Menu>
+                <Container text style={{ marginTop: '7em', height: '20em' }}>
                 <div>Friends List Component</div>
                 {this.state.friends.map(friend => {
                     return <div key={friend.id}>
@@ -40,6 +60,8 @@ class FriendsList extends React.Component {
                     </div>
                 })}
                 <FriendsForm />
+                </Container>
+
             </div>
             
         )

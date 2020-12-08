@@ -9,7 +9,7 @@ import {
     List,
     Menu,
     Segment,
-  } from 'semantic-ui-react'
+  } from 'semantic-ui-react';
 
 class Login extends React.Component {
     constructor() {
