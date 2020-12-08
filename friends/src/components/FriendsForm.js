@@ -1,98 +1,54 @@
 import React from 'react';
-import axios from 'axios';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
 class FriendsForm extends React.Component {
-    state = {
-        friends: [{
-            name: '',
-            age: '',
-            email: ''
-        }]
-    }
-
-    state = {
-        credentials: {
-            username: '',
-            password: ''
+    constructor() {
+        super();
+        this.state = {
+            friend: {
+                name: '', 
+                age: '',
+                email: ''
+            }
         }
     }
 
     componentDidMount() {
-        //this.getData()
         this.addFriend()
-    }
+      }
 
-    /*
-    getData = () => {
-        axiosWithAuth().get("http://localhost:5000/api/friends")
-            .then(res => {
-                const friends = res.data;
-                this.setState({ friends })
-                localStorage.setItem('token', res.data.payload)
-                this.props.history.push('/protected')
-            })
-            .catch(err => {
-                console.log(err.response);
-            })
-    }
-    */
+    addFriend = () => {
 
-    addFriend = (newFriend) => {
-        let friendData = newFriend;
-        
-        axiosWithAuth().post("http://localhost:5000/api/friends", friendData)
+        axiosWithAuth().post("http://localhost:5000/api/friends", this.state.friend)
         .then(res => {
-            //const friends = res.data;
-            //this.setState({ friends })
-            //console.log(friends)
-            localStorage.getItem('token', res.data.payload)
+            console.log(res.data)
         })
         .catch(err => {
             console.log(err.response);
         })
-        
     }
 
-    formatData = () => {
-
-    }
-
-    handleChanges = (e) => {
-        this.setState({ [e.target.name]: e.target.value });
-        console.log(this.state)
-    };
-
-    handleChange = e => {
+    handleChanges = e => {
+        e.preventDefault();
         this.setState({
-            credentials: {
-                ...this.state.credentials,
+            friend: {
+                ...this.state.friend,
                 [e.target.name]: e.target.value
             }
         })
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.addFriend(this.state.friends);
-        this.setState({
-          name: '', 
-          age: '', 
-          email: ''
-        })
-    };
-
     render () {
         console.log(this.state.friends)
         return(
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.addFriend}>
                 <h2>Friends Form</h2>
                 <label>
                     Name:
                     <input
                         name="name"
-                        value={this.state.name}
+                        value={this.state.friend.name}
                         onChange={this.handleChanges}
                     />
                 </label>
@@ -100,15 +56,15 @@ class FriendsForm extends React.Component {
                     Age:
                     <input
                         name="age"
-                        value={this.state.age}
+                        value={this.state.friend.age}
                         onChange={this.handleChanges}
                     />
                 </label>
                 <label>
                     Email:
                     <input
-                        name="height"
-                        value={this.state.email}
+                        name="email"
+                        value={this.state.friend.email}
                         onChange={this.handleChanges}
                     />
                 </label>

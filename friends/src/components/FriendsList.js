@@ -1,11 +1,15 @@
 import React from 'react';
-//import FriendsForm from './FriendsForm';
+import FriendsForm from './FriendsForm';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
 class FriendsList extends React.Component {
-    state = {
-        friends: []
+    constructor() {
+        super() 
+        this.state = {
+            friends: []
+        }
     }
+
 
     componentDidMount() {
         this.getData()
@@ -16,7 +20,6 @@ class FriendsList extends React.Component {
             .then(res => {
                 const friends = res.data;
                 this.setState({ friends })
-                localStorage.setItem('token', res.data.payload)
                 console.log(localStorage)
                 this.props.history.push('/protected')
             })
@@ -25,24 +28,18 @@ class FriendsList extends React.Component {
             })
     }
 
-    formatData = () => {
-
-    }
-
-    logout = () => {
-        localStorage.clear('token');
-        this.props.history.push('/')
-      };
-
     render () {
         return(
             <div>
                 <div>Friends List Component</div>
                 {this.state.friends.map(friend => {
-                    return <div key={friend.id}>{friend.name}</div>
+                    return <div key={friend.id}>
+                        <ul>
+                            <li>{friend.name} {friend.age} {friend.email}</li>
+                        </ul>
+                    </div>
                 })}
-                <button onClick={this.logout}>Logout</button>
-
+                <FriendsForm />
             </div>
             
         )
