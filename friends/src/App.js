@@ -1,10 +1,11 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Header from './components/Header';
+//import Header from './components/Header';
 import Login from './components/Login';
 import FriendsList from './components/FriendsList';
 import PrivateRoute from './components/PrivateRoute';
-import './App.css';
+import 'semantic-ui-css/semantic.min.css';
+//import './App.css';
 
 
 // Protected routes
@@ -37,7 +38,6 @@ function App() {
   return (
 
       <div className="App">
-        <Header />
         <Switch>
           <PrivateRoute exact path="/protected" component={FriendsList} />
           <Route path="/login" component={Login} />
